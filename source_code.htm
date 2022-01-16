@@ -1,0 +1,84 @@
+<!doctype html>
+	<html>
+	<head>
+		
+		<title> encrypt your text </title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+      body 
+      {
+         background-color: mintcream;
+      }
+      
+
+* {
+    box-sizing: border-box;
+  }
+  h1 {text-align: center;color:black; padding: 35px;}
+
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 300px; 
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+</style>
+	</head>
+	<body> 
+    <h1>TEXT CONVERTER </h1>
+		
+<div class="row">
+
+  <div class="column" style="background-color:#aaa;text-align:center;">
+    <h2>Plain Text</h2>   
+    <textarea id="PlainText" type="text" rows="15" cols="75" placeholder="Text" oninput="PlainConverter(this.value)" onchange="PlainConverter(this.value)"></textarea> 
+  </div>
+
+  <div class="column" style="background-color:#bbb;text-align:center;">
+    <h2>Cipher Text</h2>
+    <textarea id="CipherText" type="text" rows="15" cols="75" placeholder="Text" oninput="CipherConverter(this.value)" onchange="CipherConverter(this.value)"></textarea>   	
+  </div>
+</div>
+<script>
+function PlainConverter(val) { // this function converts plain text into cipher text
+  let xx='';
+  for(let i=0;i<val.length;i++)
+  {
+   let a=val.charCodeAt(i);let b;
+    if(a>=97 & a<=122)
+   {
+       b=(27-(a-96)+96);let c=String.fromCharCode(b);xx+=c;
+   }
+    else if(a>=65 & a<=90)
+    {
+     b=(27-(a-64)+64);  let c=String.fromCharCode(b);xx+=c;
+    }
+    else xx+=val[i];
+  }  
+  document.getElementById("CipherText").innerHTML=xx;
+}
+function CipherConverter(val) { // this function converts cipher text into plain text 
+  let xx='';
+  for(let i=0;i<val.length;i++)
+  {
+   let a=val.charCodeAt(i);let b;
+    if(a>=97 & a<=122)
+    {
+      b=(27-(a-96)+96);let c=String.fromCharCode(b);xx+=c;
+    }
+    else if(a>=65 & a<=90)
+   {
+     b=(27-(a-64)+64);let c=String.fromCharCode(b);xx+=c;
+   }
+    else xx+=val[i];
+  }  
+  document.getElementById("PlainText").innerHTML=xx;
+}
+</script>
+	</body>
+	</html>
